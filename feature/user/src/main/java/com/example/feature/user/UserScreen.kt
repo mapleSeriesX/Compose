@@ -57,12 +57,12 @@ fun UserScreen(
         )
     }
 }
-//@Composable
-//fun  sest23(){
-//    Box( contentAlignment = Alignment.Center) {
-//        CircularProgressIndicator()
-//    }
-//}
+@Composable
+fun  sest23(){
+    Box( contentAlignment = Alignment.Center) {
+        CircularProgressIndicator()
+    }
+}
 @Composable
 fun UserContent(
     state: UserUiState,
