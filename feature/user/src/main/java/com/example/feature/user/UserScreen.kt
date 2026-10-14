@@ -90,7 +90,7 @@ fun UserContent(
             LazyColumn {
                 items(state.users, key = { it.id }) { user ->
                     ListItem(
-                        headlineContent = { Text(user.name, color = Color.Red) },
+                        headlineContent = { Text(user.name, color = Color.Green) },
                         modifier = modifier.clickable {
                             onIntent(UserIntent.OnUserClick(user.id))
                         }
