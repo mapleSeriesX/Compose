@@ -1,0 +1,10 @@
+package com.example.myapplication
+
+import androidx.navigation3.runtime.NavKey
+import kotlinx.serialization.Serializable
+
+@Serializable
+data object UserList : NavKey
+
+@Serializable
+data class UserDetail(val userId: String) : NavKey
