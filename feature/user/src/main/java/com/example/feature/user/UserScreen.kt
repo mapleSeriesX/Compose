@@ -22,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
@@ -49,20 +50,26 @@ fun UserScreen(
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { padding ->
-        UserContent(
+         UserContent(
             state = uiState,
             onIntent = viewModel::onIntent,
             modifier = Modifier.padding(padding)
         )
     }
 }
-
+@Composable
+fun  Sest23(){
+    Box( contentAlignment = Alignment.Center) {
+        CircularProgressIndicator()
+    }
+}
 @Composable
 fun UserContent(
     state: UserUiState,
     onIntent: (UserIntent) -> Unit,
     modifier: Modifier
 ) {
+    //sest23()
     when {
         state.isLoading -> {
             Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -88,7 +95,7 @@ fun UserContent(
             LazyColumn {
                 items(state.users, key = { it.id }) { user ->
                     ListItem(
-                        headlineContent = { Text(user.name) },
+                        headlineContent = { Text(user.name, color = Color.Yellow) },
                         modifier = modifier.clickable {
                             onIntent(UserIntent.OnUserClick(user.id))
                         }

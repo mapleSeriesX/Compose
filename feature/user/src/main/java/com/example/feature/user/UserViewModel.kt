@@ -1,5 +1,9 @@
 package com.example.feature.user
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.user.UserRepository
@@ -67,4 +71,6 @@ class UserViewModel @Inject constructor(
                 }
         }
     }
+
+
 }
