@@ -57,19 +57,19 @@ fun UserScreen(
         )
     }
 }
-@Composable
-fun  sest23(){
-    Box( contentAlignment = Alignment.Center) {
-        CircularProgressIndicator()
-    }
-}
+//@Composable
+//fun  sest23(){
+//    Box( contentAlignment = Alignment.Center) {
+//        CircularProgressIndicator()
+//    }
+//}
 @Composable
 fun UserContent(
     state: UserUiState,
     onIntent: (UserIntent) -> Unit,
     modifier: Modifier
 ) {
-    sest23()
+    //sest23()
     when {
         state.isLoading -> {
             Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
