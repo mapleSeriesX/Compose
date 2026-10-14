@@ -58,7 +58,7 @@ fun UserScreen(
     }
 }
 @Composable
-fun  sest23(){
+fun  Sest23(){
     Box( contentAlignment = Alignment.Center) {
         CircularProgressIndicator()
     }

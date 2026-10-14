@@ -1,16 +1,1 @@
-J:\Android\Android Project\My Application\feature\user\lint-baseline.xml: Hint: 1 error was filtered out because it is listed in the baseline file, lint-baseline.xml [LintBaseline]
-J:\Android\Android Project\My Application\feature\user\src\main\java\com\example\feature\user\UserViewModel.kt:76: Error: Composable functions that return Unit should start with an uppercase letter [ComposableNaming from androidx.compose.runtime]
-    fun  s2est23(){
-         ~~~~~~~
-
-   Explanation for issues of type "ComposableNaming":
-   @Composable functions without a return type should use similar naming to
-   classes, starting with an uppercase letter and ending with a noun.
-   @Composable functions with a return type should be treated as normal Kotlin
-   functions, starting with a lowercase letter.
-
-   Vendor: Jetpack Compose
-   Identifier: androidx.compose.runtime
-   Feedback: https://issuetracker.google.com/issues/new?component=612128
-
-1 error (and 1 error filtered by baseline lint-baseline.xml)
+No issues found.
