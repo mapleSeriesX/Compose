@@ -1,3 +1,7 @@
+import groovy.lang.ExpandoMetaClassCreationHandle.disable
+import groovyjarjarantlr4.v4.runtime.misc.RuleDependencyChecker.checkDependencies
+import java.lang.module.ModuleFinder.compose
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
@@ -10,7 +14,15 @@ android {
     compileSdk {
         version = release(37)
     }
-
+    lint {
+        abortOnError = true          // 有 error 时构建失败
+        warningsAsErrors = true     // 先不把 warning 当 error，避免太严
+        checkDependencies = true     // 同时检查依赖库
+        baseline = file("lint-baseline.xml")  // 基线文件
+        // 按需禁用或启用特定检查
+        disable += listOf("MissingTranslation")
+        enable += listOf("RtlHardcoded", "RtlCompat")
+    }
     defaultConfig {
         minSdk = 30
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

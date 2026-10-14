@@ -1,0 +1,157 @@
+{
+    "$schema" : "https://docs.oasis-open.org/sarif/sarif/v2.1.0/errata01/os/schemas/sarif-schema-2.1.0.json",
+    "version" : "2.1.0",
+    "runs" : [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Android Lint",
+                    "fullName": "Android Lint (in gradle)",
+                    "version": "9.5.0-alpha09",
+                    "semanticVersion": "9.5.0-alpha09",
+                    "organization": "Google",
+                    "informationUri": "https://developer.android.com/studio/write/lint",
+                    "fullDescription": {
+                        "text": "Static analysis originally for Android source code but now performing general analysis"
+                    },
+                    "language": "en-US",
+                    "rules": [
+                        {
+                            "id": "ComposableNaming",
+                            "shortDescription": {
+                                "text": "Incorrect naming for @Composable functions"
+                            },
+                            "fullDescription": {
+                                "text": "@Composable functions without a return type should use similar naming to classes, starting with an uppercase letter and ending with a noun. @Composable functions with a return type should be treated as normal Kotlin functions, starting with a lowercase letter."
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning",
+                                "rank": 80
+                            },
+                            "properties": {
+                                "tags": [
+                                    "Correctness"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "LintBaseline",
+                            "shortDescription": {
+                                "text": "Baseline Applied"
+                            },
+                            "fullDescription": {
+                                "text": "Lint can be configured with a \"baseline\"; a set of current issues found in a codebase, which future runs of lint will silently ignore. Only new issues not found in the baseline are reported.\n\nNote that while opening files in the IDE, baseline issues are not filtered out; the purpose of baselines is to allow you to get started using lint and break the build on all newly introduced errors, without having to go back and fix the entire codebase up front. However, when you open up existing files you still want to be aware of and fix issues as you come across them.\n\nThis issue type is used to emit an informational-only warning if any issues were filtered out due to baseline matching. That way, you don't have a false sense of security if you forgot that you've checked in a baseline file."
+                            },
+                            "defaultConfiguration": {
+                                "level": "note",
+                                "rank": 10
+                            },
+                            "properties": {
+                                "tags": [
+                                    "Lint"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            "originalUriBaseIds": {
+                "%SRCROOT%": {
+                    "uri": "file:///J:/Android/Android%20Project/My%20Application/"
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "LintBaseline",
+                    "ruleIndex": 1,
+                    "message": {
+                        "text": "1 error was filtered out because it is listed in the baseline file, lint-baseline.xml"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "feature/user/lint-baseline.xml"
+                                },
+                                "region": {
+                                    "startLine": 1
+                                }                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                    }
+                },
+                {
+                    "ruleId": "ComposableNaming",
+                    "ruleIndex": 0,
+                    "message": {
+                        "text": "Composable functions that return Unit should start with an uppercase letter"
+                    },
+                    "level": "error",
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "feature/user/src/main/java/com/example/feature/user/UserViewModel.kt"
+                                },
+                                "region": {
+                                    "startLine": 76,
+                                    "startColumn": 10,
+                                    "endLine": 76,
+                                    "endColumn": 17,
+                                    "charOffset": 2607,
+                                    "charLength": 7,
+                                    "snippet": {
+                                        "text": "s2est23"
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 74,
+                                    "endLine": 79,
+                                    "snippet": {
+                                        "text": "\n    @Composable\n    fun  s2est23(){\n        Box( contentAlignment = Alignment.Center) {\n            CircularProgressIndicator()\n"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "fixes": [
+                        {
+                            "description": {
+                                "text": "Change to S2est23"
+                            },
+                            "artifactChanges": [
+                                {
+                                    "artifactLocation": {
+                                        "uriBaseId": "%SRCROOT%",
+                                        "uri": "feature/user/src/main/java/com/example/feature/user/UserViewModel.kt"
+                                    },
+                                    "replacements": [
+                                        {
+                                            "deletedRegion": {
+                                                "startLine": 76,
+                                                "startColumn": 10,
+                                                "charOffset": 2607,
+                                                "endLine": 76,
+                                                "endColumn": 17,
+                                                "charLength": 7
+                                            },
+                                            "insertedContent": {
+                                                "text": "S2est23"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "6e6a86dd76e32d4d"
+                    }
+                }
+            ]
+        }
+    ]
+}

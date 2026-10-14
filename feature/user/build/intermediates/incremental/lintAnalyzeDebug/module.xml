@@ -1,0 +1,36 @@
+<lint-module
+    format="1"
+    dir="J:\Android\Android Project\My Application\feature\user"
+    name=":feature:user"
+    type="LIBRARY"
+    maven="My Application.feature:user:unspecified"
+    agpVersion="9.5.0-alpha09"
+    buildFolder="build"
+    bootClassPath="C:\Users\74091\AppData\Local\Android\Sdk\platforms\android-37.0\android.jar;C:\Users\74091\AppData\Local\Android\Sdk\build-tools\36.0.0\core-lambda-stubs.jar"
+    javaSourceLevel="11"
+    compileTarget="android-37.0"
+    neverShrinking="true"
+    highlightGradualR8Api="false">
+  <lintOptions
+      checkDependencies="true"
+      disable="MissingTranslation"
+      enable="RtlHardcoded,RtlCompat"
+      abortOnError="true"
+      absolutePaths="true"
+      warningsAsErrors="true"
+      checkReleaseBuilds="true"
+      explainIssues="true">
+    <severities>
+      <severity
+        id="MissingTranslation"
+        severity="IGNORE" />
+      <severity
+        id="RtlCompat"
+        severity="DEFAULT_ENABLED" />
+      <severity
+        id="RtlHardcoded"
+        severity="DEFAULT_ENABLED" />
+    </severities>
+  </lintOptions>
+  <variant name="debug"/>
+</lint-module>

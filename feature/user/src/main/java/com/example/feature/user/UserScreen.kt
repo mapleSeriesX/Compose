@@ -1,7 +1,6 @@
 package com.example.feature.user
 
 import android.util.Log
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -51,20 +50,26 @@ fun UserScreen(
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { padding ->
-        UserContent(
+         UserContent(
             state = uiState,
             onIntent = viewModel::onIntent,
             modifier = Modifier.padding(padding)
         )
     }
 }
-
+@Composable
+fun  sest23(){
+    Box( contentAlignment = Alignment.Center) {
+        CircularProgressIndicator()
+    }
+}
 @Composable
 fun UserContent(
     state: UserUiState,
     onIntent: (UserIntent) -> Unit,
     modifier: Modifier
 ) {
+    sest23()
     when {
         state.isLoading -> {
             Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {

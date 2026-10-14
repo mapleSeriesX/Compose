@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 9.5.0-alpha09" type="incidents">
+
+    <incident
+        id="ComposableNaming"
+        severity="error"
+        message="Composable functions that return Unit should start with an uppercase letter">
+        <fix-replace
+            description="Change to Sest23"
+            robot="true"
+            independent="true"
+            oldString="sest23"
+            replacement="Sest23"
+            priority="0"/>
+        <location
+            file="${:feature:user*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/feature/user/UserScreen.kt"
+            line="61"
+            column="6"
+            startOffset="2102"
+            endLine="61"
+            endColumn="12"
+            endOffset="2108"/>
+    </incident>
+
+    <incident
+        id="ComposableNaming"
+        severity="error"
+        message="Composable functions that return Unit should start with an uppercase letter">
+        <fix-replace
+            description="Change to S2est23"
+            robot="true"
+            independent="true"
+            oldString="s2est23"
+            replacement="S2est23"
+            priority="0"/>
+        <location
+            file="${:feature:user*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/feature/user/UserViewModel.kt"
+            line="76"
+            column="10"
+            startOffset="2607"
+            endLine="76"
+            endColumn="17"
+            endOffset="2614"/>
+    </incident>
+
+</incidents>
