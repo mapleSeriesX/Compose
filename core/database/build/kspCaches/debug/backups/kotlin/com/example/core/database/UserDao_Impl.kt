@@ -1,9 +1,12 @@
 package com.example.core.database
 
+import androidx.paging.PagingSource
 import androidx.room.EntityDeleteOrUpdateAdapter
 import androidx.room.EntityInsertAdapter
 import androidx.room.RoomDatabase
+import androidx.room.RoomRawQuery
 import androidx.room.coroutines.createFlow
+import androidx.room.paging.LimitOffsetPagingSource
 import androidx.room.util.getColumnIndexOrThrow
 import androidx.room.util.performSuspending
 import androidx.sqlite.SQLiteStatement
@@ -55,7 +58,7 @@ public class UserDao_Impl(
     __insertAdapterOfUserEntity.insert(_connection, users)
   }
 
-  public override suspend fun insetUser(user: UserEntity): Unit = performSuspending(__db, false, true) { _connection ->
+  public override suspend fun insertUser(user: UserEntity): Unit = performSuspending(__db, false, true) { _connection ->
     __updateAdapterOfUserEntity.handle(_connection, user)
   }
 
@@ -82,6 +85,37 @@ public class UserDao_Impl(
         _result
       } finally {
         _stmt.close()
+      }
+    }
+  }
+
+  public override fun pagingSource(): PagingSource<Int, UserEntity> {
+    val _sql: String = "SELECT * FROM users ORDER BY id ASC"
+    val _rawQuery: RoomRawQuery = RoomRawQuery(_sql)
+    return object : LimitOffsetPagingSource<UserEntity>(_rawQuery, __db, "users") {
+      protected override suspend fun convertRows(limitOffsetQuery: RoomRawQuery, itemCount: Int): List<UserEntity> = performSuspending(__db, true, false) { _connection ->
+        val _stmt: SQLiteStatement = _connection.prepare(limitOffsetQuery.sql)
+        limitOffsetQuery.getBindingFunction().invoke(_stmt)
+        try {
+          val _columnIndexOfId: Int = getColumnIndexOrThrow(_stmt, "id")
+          val _columnIndexOfName: Int = getColumnIndexOrThrow(_stmt, "name")
+          val _columnIndexOfUrl: Int = getColumnIndexOrThrow(_stmt, "url")
+          val _result: MutableList<UserEntity> = mutableListOf()
+          while (_stmt.step()) {
+            val _item: UserEntity
+            val _tmpId: String
+            _tmpId = _stmt.getText(_columnIndexOfId)
+            val _tmpName: String
+            _tmpName = _stmt.getText(_columnIndexOfName)
+            val _tmpUrl: String
+            _tmpUrl = _stmt.getText(_columnIndexOfUrl)
+            _item = UserEntity(_tmpId,_tmpName,_tmpUrl)
+            _result.add(_item)
+          }
+          _result
+        } finally {
+          _stmt.close()
+        }
       }
     }
   }

@@ -1,0 +1,7 @@
+com.example.feature.userDetail
+string user_detail_avatar_desc
+string user_detail_id
+string user_detail_load_failed
+string user_detail_load_failed_default
+string user_detail_name
+string user_detail_retry

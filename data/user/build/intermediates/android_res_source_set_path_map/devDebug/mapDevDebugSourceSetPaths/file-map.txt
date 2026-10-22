@@ -1,0 +1,11 @@
+com.example.data.user-dev-0 J:\Android\Android Project\My Application\data\user\build\generated\res\pngs\dev\debug
+com.example.data.user-updated_navigation_xml-1 J:\Android\Android Project\My Application\data\user\build\generated\updated_navigation_xml\devDebug
+com.example.data.user-mergeDevDebugResources-2 J:\Android\Android Project\My Application\data\user\build\intermediates\incremental\devDebug\mergeDevDebugResources\merged.dir
+com.example.data.user-mergeDevDebugResources-3 J:\Android\Android Project\My Application\data\user\build\intermediates\incremental\devDebug\mergeDevDebugResources\stripped.dir
+com.example.data.user-devDebug-4 J:\Android\Android Project\My Application\data\user\build\intermediates\merged_res\devDebug\mergeDevDebugResources
+com.example.data.user-devDebug-5 J:\Android\Android Project\My Application\data\user\build\intermediates\packaged_res\devDebug\packageDevDebugResources
+com.example.data.user-debug-6 J:\Android\Android Project\My Application\data\user\src\debug\res
+com.example.data.user-dev-7 J:\Android\Android Project\My Application\data\user\src\dev\res
+com.example.data.user-devDebug-8 J:\Android\Android Project\My Application\data\user\src\devDebug\res
+com.example.data.user-main-9 J:\Android\Android Project\My Application\data\user\src\main\res
+gradleHome-0 C:\Users\74091\.gradle

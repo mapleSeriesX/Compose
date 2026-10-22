@@ -1,27 +1,18 @@
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.myapplication.android.library)
     alias(libs.plugins.kotlin.serialization)
 }
 
 android {
     namespace = "com.example.core.model"
-    compileSdk {
-        version = release(37)
-    }
 
     defaultConfig {
-        minSdk = 30
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
 }
 
 dependencies {
+    implementation(libs.androidx.compose.runtime)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit.kotlinx.serialization)
     implementation(libs.androidx.appcompat)

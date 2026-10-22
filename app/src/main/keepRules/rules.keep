@@ -1,12 +1,32 @@
-# Add project specific R8 rules here.
-# AGP will combine all keep rule files in src/main/keepRules to pass to R8
-#
-# For more details, see
-#   https://d.android.com/r/tools/r8/keep-rules
+# R8 / ProGuard Keep Rules for Production Builds
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Retrofit
+-keepattributes Signature, InnerClasses, EnclosingMethod
+-keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
+-keepclassmembers,allowobfuscation interface * {
+    @retrofit2.http.* <methods>;
+}
+
+# kotlinx.serialization
+-keepattributes *Annotation*, ElementValuePairs
+-keepclassmembers class * {
+    *** Companion;
+}
+-keepclasseswithmembers class * {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+-keepclassmembers class * {
+    @kotlinx.serialization.Serializable <fields>;
+}
+
+# Room Database
+-keep class * extends androidx.room.RoomDatabase
+-dontwarn androidx.room.paging.**
+
+# Protocol Buffers / DataStore
+-keep class * extends com.google.protobuf.GeneratedMessageLite { *; }
+
+# Hilt / Dagger
+-keepclassmembers,allowobfuscation class * {
+    @dagger.hilt.android.lifecycle.HiltViewModel <init>(...);
+}

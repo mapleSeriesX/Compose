@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 9.5.0-alpha10" type="incidents">
+
+    <incident
+        id="EnsureInitializerMetadata"
+        severity="fatal"
+        message="Every Initializer needs to be accompanied by a corresponding &lt;meta-data> entry in the AndroidManifest.xml file.">
+        <location
+            file="${:core:common*prodRelease*MAIN*sourceProvider*0*javaDir*0}/com/example/core/common/startup/LoggerInitializer.kt"
+            line="7"
+            column="1"
+            startOffset="155"
+            endLine="16"
+            endColumn="2"
+            endOffset="436"/>
+    </incident>
+
+</incidents>

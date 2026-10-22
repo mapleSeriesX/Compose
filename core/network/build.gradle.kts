@@ -1,27 +1,20 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.ksp)   // 应用 KSP 插件
-    alias(libs.plugins.hilt)  // 应用 Hilt 插件
-    // 确保插件版本与你的 Kotlin 版本匹配
+    alias(libs.plugins.myapplication.android.library)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.serialization)
 }
 
 android {
     namespace = "com.example.core.network"
-    compileSdk {
-        version = release(37)
-    }
 
     defaultConfig {
-        minSdk = 30
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
 
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -30,7 +23,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
     implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)   // 现在 ksp 函数可以被正确解析了
+    ksp(libs.hilt.compiler)
 
     implementation(libs.retrofit)
 

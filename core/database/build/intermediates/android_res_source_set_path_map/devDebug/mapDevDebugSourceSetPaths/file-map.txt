@@ -1,0 +1,11 @@
+com.example.core.database-dev-0 J:\Android\Android Project\My Application\core\database\build\generated\res\pngs\dev\debug
+com.example.core.database-updated_navigation_xml-1 J:\Android\Android Project\My Application\core\database\build\generated\updated_navigation_xml\devDebug
+com.example.core.database-mergeDevDebugResources-2 J:\Android\Android Project\My Application\core\database\build\intermediates\incremental\devDebug\mergeDevDebugResources\merged.dir
+com.example.core.database-mergeDevDebugResources-3 J:\Android\Android Project\My Application\core\database\build\intermediates\incremental\devDebug\mergeDevDebugResources\stripped.dir
+com.example.core.database-devDebug-4 J:\Android\Android Project\My Application\core\database\build\intermediates\merged_res\devDebug\mergeDevDebugResources
+com.example.core.database-devDebug-5 J:\Android\Android Project\My Application\core\database\build\intermediates\packaged_res\devDebug\packageDevDebugResources
+com.example.core.database-debug-6 J:\Android\Android Project\My Application\core\database\src\debug\res
+com.example.core.database-dev-7 J:\Android\Android Project\My Application\core\database\src\dev\res
+com.example.core.database-devDebug-8 J:\Android\Android Project\My Application\core\database\src\devDebug\res
+com.example.core.database-main-9 J:\Android\Android Project\My Application\core\database\src\main\res
+gradleHome-0 C:\Users\74091\.gradle

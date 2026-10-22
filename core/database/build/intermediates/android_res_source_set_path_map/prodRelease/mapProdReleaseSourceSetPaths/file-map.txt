@@ -1,0 +1,11 @@
+com.example.core.database-prod-0 J:\Android\Android Project\My Application\core\database\build\generated\res\pngs\prod\release
+com.example.core.database-updated_navigation_xml-1 J:\Android\Android Project\My Application\core\database\build\generated\updated_navigation_xml\prodRelease
+com.example.core.database-mergeProdReleaseResources-2 J:\Android\Android Project\My Application\core\database\build\intermediates\incremental\prodRelease\mergeProdReleaseResources\merged.dir
+com.example.core.database-mergeProdReleaseResources-3 J:\Android\Android Project\My Application\core\database\build\intermediates\incremental\prodRelease\mergeProdReleaseResources\stripped.dir
+com.example.core.database-prodRelease-4 J:\Android\Android Project\My Application\core\database\build\intermediates\merged_res\prodRelease\mergeProdReleaseResources
+com.example.core.database-prodRelease-5 J:\Android\Android Project\My Application\core\database\build\intermediates\packaged_res\prodRelease\packageProdReleaseResources
+com.example.core.database-main-6 J:\Android\Android Project\My Application\core\database\src\main\res
+com.example.core.database-prod-7 J:\Android\Android Project\My Application\core\database\src\prod\res
+com.example.core.database-prodRelease-8 J:\Android\Android Project\My Application\core\database\src\prodRelease\res
+com.example.core.database-release-9 J:\Android\Android Project\My Application\core\database\src\release\res
+gradleHome-0 C:\Users\74091\.gradle

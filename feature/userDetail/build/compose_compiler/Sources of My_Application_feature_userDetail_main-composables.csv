@@ -1,0 +1,5 @@
+package,name,composable,skippable,restartable,readonly,inline,isLambda,hasDefaults,defaultsGroup,groups,calls,
+com.example.feature.userDetail.UserDetailScreen,UserDetailScreen,1,1,1,0,0,0,0,0,1,6,
+com.example.feature.userDetail.UserDetailContent,UserDetailContent,1,1,1,0,0,0,0,0,5,3,
+com.example.feature.userDetail.UserDetailContentPreview,UserDetailContentPreview,1,1,1,0,0,0,0,0,1,1,
+com.example.feature.userDetail.UserDetailContentErrorPreview,UserDetailContentErrorPreview,1,1,1,0,0,0,0,0,1,1,

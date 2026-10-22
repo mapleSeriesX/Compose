@@ -1,0 +1,4 @@
+com.example.feature.user.test.user-mergeDebugUnitTestResources-0 J:\Android\Android Project\My Application\feature\user\build\intermediates\incremental\debugUnitTest\mergeDebugUnitTestResources\merged.dir
+com.example.feature.user.test.user-mergeDebugUnitTestResources-1 J:\Android\Android Project\My Application\feature\user\build\intermediates\incremental\debugUnitTest\mergeDebugUnitTestResources\stripped.dir
+com.example.feature.user.test.user-debugUnitTest-2 J:\Android\Android Project\My Application\feature\user\build\intermediates\merged_res\debugUnitTest\mergeDebugUnitTestResources
+gradleHome-0 C:\Users\74091\.gradle

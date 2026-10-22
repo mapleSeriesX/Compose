@@ -1,0 +1,11 @@
+restartable skippable scheme("[androidx.compose.ui.UiComposable]") fun com.example.feature.userDetail.UserDetailScreen(
+  viewModel: UserDetailViewModel
+  stable modifier: Modifier? = @static <expression>
+)
+restartable skippable scheme("[androidx.compose.ui.UiComposable]") fun com.example.feature.userDetail.UserDetailContent(
+  state: UserDetailUiState
+  stable onIntent: Function1<UserDetailIntent, Unit>
+  stable modifier: Modifier? = @static <expression>
+)
+restartable skippable scheme("[androidx.compose.ui.UiComposable]") fun com.example.feature.userDetail.UserDetailContentPreview()
+restartable skippable scheme("[androidx.compose.ui.UiComposable]") fun com.example.feature.userDetail.UserDetailContentErrorPreview()
