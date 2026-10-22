@@ -1,20 +1,16 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.myapplication.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
     namespace = "com.example.myapplication"
-    compileSdk {
-        version = release(37)
-    }
 
     defaultConfig {
         applicationId = "com.example.myapplication"
-        minSdk = 30
-        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -23,27 +19,32 @@ android {
 
     buildTypes {
         release {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             optimization {
                 enable = true
                 packageScope = setOf("androidx.**", "kotlin.**", "kotlinx.**")
             }
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
+
     buildFeatures {
         compose = true
     }
 }
 
 dependencies {
+
     implementation(project(":core:model"))
     implementation(project(":core:network"))
     implementation(project(":core:database"))
     implementation(project(":core:common"))
     implementation(project(":data:user"))
+    implementation(project(":data:preferences"))
     implementation(project(":feature:user"))
     implementation(project(":feature:userDetail"))
 
@@ -87,4 +88,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.leakcanary.android)
 }

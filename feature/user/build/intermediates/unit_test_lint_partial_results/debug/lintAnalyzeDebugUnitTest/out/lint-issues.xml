@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<incidents format="6" by="lint 9.5.0-alpha09" type="configured_issues">
-    <config id="MissingTranslation" severity="ignore"/>
-    <config id="RtlCompat" severity="error"/>
-    <config id="RtlHardcoded" severity="warning"/>
-
-</incidents>
