@@ -4,7 +4,7 @@ import android.app.Application
 import coil3.ImageLoader
 import coil3.PlatformContext
 import coil3.SingletonImageLoader
-import coil3.network.okhttp.OkHttpNetworkFetcherFactory // 关键导入
+import coil3.network.okhttp.OkHttpNetworkFetcherFactory
 import coil3.request.crossfade
 import dagger.hilt.android.HiltAndroidApp
 import okhttp3.OkHttpClient
@@ -27,4 +27,6 @@ class MyApplication : Application(), SingletonImageLoader.Factory {
             }
             .crossfade(true)
             .build()
+
+
 }
