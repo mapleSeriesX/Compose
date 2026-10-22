@@ -1,10 +1,11 @@
-package com.example.data.user
+package com.example.data.preferences.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.dataStoreFile
-import com.example.data.user.proto.UserPreferences
+import com.example.data.preferences.PreferencesSerializer
+import com.example.data.preferences.proto.UserPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,7 +28,7 @@ object DataStoreModule {
         @ApplicationContext context: Context
     ): DataStore<UserPreferences> =
         DataStoreFactory.create(
-            serializer = UserPreferencesSerializer,
+            serializer = PreferencesSerializer,
             scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
             produceFile = { context.dataStoreFile(USER_PREFS_FILE) }
         )

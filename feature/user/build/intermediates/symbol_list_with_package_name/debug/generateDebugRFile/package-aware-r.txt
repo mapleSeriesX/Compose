@@ -1,0 +1,5 @@
+com.example.feature.user
+string user_load_failed
+string user_network_error_cache
+string user_network_error_toast
+string user_retry

@@ -1,76 +1,94 @@
 package com.example.feature.user
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.core.common.util.UiText
+import com.example.core.model.User
 import com.example.data.user.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.coroutines.cancellation.CancellationException
 
 @HiltViewModel
 class UserViewModel @Inject constructor(
     private val repository: UserRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(UserUiState())
-    val uiState: StateFlow<UserUiState> = _uiState.asStateFlow()
+    // ① Room 数据源：stateIn 直接热化，Eagerly 保证 loadUsers 能读到缓存
+    private val users: StateFlow<ImmutableList<User>> = repository.observeUsers()
+        .map { it.toImmutableList() }
+        .catch { e ->
+            if (e is CancellationException) throw e
+            _errorMessage.value = e.message?.let { UiText.DynamicString(it) }
+                ?: UiText.StringResource(R.string.user_load_failed)
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = persistentListOf()
+        )
+
+    private val _isLoading = MutableStateFlow(false)
+    private val _errorMessage = MutableStateFlow<UiText?>(null)
+
+    // ② UI 状态：combine 三个源，WhileSubscribed 控制 UI 层计算
+    val uiState: StateFlow<UserUiState> = combine(
+        users, _isLoading, _errorMessage
+    ) { users, loading, error ->
+        UserUiState(users = users, isLoading = loading, errorMessage = error)
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = UserUiState()
+    )
 
     private val _effect = Channel<UserEffect>(Channel.BUFFERED)
     val effect: Flow<UserEffect> = _effect.receiveAsFlow()
 
-    init {
-        viewModelScope.launch {
-            var firstEmission = true
-            repository.observeUsers().collect { users ->
-                _uiState.update { it.copy(users = users) }
-                if (firstEmission) {
-                    firstEmission = false
-                    onIntent(UserIntent.Refresh)
-                }
-            }
-        }
-    }
-
     fun onIntent(intent: UserIntent) {
         when (intent) {
-            is UserIntent.LoadUsers -> loadUsers()
-            is UserIntent.Refresh -> loadUsers()
-            is UserIntent.OnUserClick -> {
-                viewModelScope.launch {
-                    _effect.send(UserEffect.NavigateToDetail(intent.userId))
-                }
+            UserIntent.LoadUsers, UserIntent.Refresh -> loadUsers()
+            is UserIntent.OnUserClick -> viewModelScope.launch {
+                _effect.send(UserEffect.NavigateToDetail(intent.userId))
             }
         }
     }
 
     private fun loadUsers() {
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true, errorMessage = null) }
-            runCatching { repository.refreshUsers() }
-                .onSuccess {
-                    _uiState.update { it.copy(isLoading = false) }
+            _isLoading.value = true
+            _errorMessage.value = null
+            repository.refreshUsers().onFailure { e ->
+                // users 是 Eagerly，这里读到的缓存一定准确
+                if (users.value.isNotEmpty()) {
+                    _errorMessage.value = null
+                    _effect.send(
+                        UserEffect.ShowToast(UiText.StringResource(R.string.user_network_error_cache))
+                    )
+                } else {
+                    val errorUiText = e.message?.let { UiText.DynamicString(it) }
+                        ?: UiText.StringResource(R.string.user_load_failed)
+                    _errorMessage.value = errorUiText
+                    _effect.send(
+                        UserEffect.ShowToast(UiText.StringResource(R.string.user_network_error_toast))
+                    )
                 }
-                .onFailure { e ->
-                    val hasCache = _uiState.value.users.isNotEmpty()
-                    _uiState.update {
-                        it.copy(isLoading = false, errorMessage = if (hasCache) null else e.message)
-                    }
-                    if (!hasCache)
-                        _effect.send(UserEffect.ShowToast("加载失败：${e.message}"))
-                }
+            }
+            _isLoading.value = false
         }
     }
-
-
 }

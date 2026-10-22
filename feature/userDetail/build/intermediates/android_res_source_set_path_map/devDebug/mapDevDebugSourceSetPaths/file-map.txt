@@ -1,0 +1,11 @@
+com.example.feature.userDetail-dev-0 J:\Android\Android Project\My Application\feature\userDetail\build\generated\res\pngs\dev\debug
+com.example.feature.userDetail-updated_navigation_xml-1 J:\Android\Android Project\My Application\feature\userDetail\build\generated\updated_navigation_xml\devDebug
+com.example.feature.userDetail-mergeDevDebugResources-2 J:\Android\Android Project\My Application\feature\userDetail\build\intermediates\incremental\devDebug\mergeDevDebugResources\merged.dir
+com.example.feature.userDetail-mergeDevDebugResources-3 J:\Android\Android Project\My Application\feature\userDetail\build\intermediates\incremental\devDebug\mergeDevDebugResources\stripped.dir
+com.example.feature.userDetail-devDebug-4 J:\Android\Android Project\My Application\feature\userDetail\build\intermediates\merged_res\devDebug\mergeDevDebugResources
+com.example.feature.userDetail-devDebug-5 J:\Android\Android Project\My Application\feature\userDetail\build\intermediates\packaged_res\devDebug\packageDevDebugResources
+com.example.feature.userDetail-debug-6 J:\Android\Android Project\My Application\feature\userDetail\src\debug\res
+com.example.feature.userDetail-dev-7 J:\Android\Android Project\My Application\feature\userDetail\src\dev\res
+com.example.feature.userDetail-devDebug-8 J:\Android\Android Project\My Application\feature\userDetail\src\devDebug\res
+com.example.feature.userDetail-main-9 J:\Android\Android Project\My Application\feature\userDetail\src\main\res
+gradleHome-0 C:\Users\74091\.gradle

@@ -1,0 +1,2 @@
+-keep,allowobfuscation,allowshrinking class com.example.feature.user.UserViewModel
+-keep,allowobfuscation,allowshrinking class com.example.feature.user.UserViewModel

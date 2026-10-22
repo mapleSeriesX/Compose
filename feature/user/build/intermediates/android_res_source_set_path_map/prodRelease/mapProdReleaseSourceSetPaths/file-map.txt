@@ -1,0 +1,11 @@
+com.example.feature.user-prod-0 J:\Android\Android Project\My Application\feature\user\build\generated\res\pngs\prod\release
+com.example.feature.user-updated_navigation_xml-1 J:\Android\Android Project\My Application\feature\user\build\generated\updated_navigation_xml\prodRelease
+com.example.feature.user-mergeProdReleaseResources-2 J:\Android\Android Project\My Application\feature\user\build\intermediates\incremental\prodRelease\mergeProdReleaseResources\merged.dir
+com.example.feature.user-mergeProdReleaseResources-3 J:\Android\Android Project\My Application\feature\user\build\intermediates\incremental\prodRelease\mergeProdReleaseResources\stripped.dir
+com.example.feature.user-prodRelease-4 J:\Android\Android Project\My Application\feature\user\build\intermediates\merged_res\prodRelease\mergeProdReleaseResources
+com.example.feature.user-prodRelease-5 J:\Android\Android Project\My Application\feature\user\build\intermediates\packaged_res\prodRelease\packageProdReleaseResources
+com.example.feature.user-main-6 J:\Android\Android Project\My Application\feature\user\src\main\res
+com.example.feature.user-prod-7 J:\Android\Android Project\My Application\feature\user\src\prod\res
+com.example.feature.user-prodRelease-8 J:\Android\Android Project\My Application\feature\user\src\prodRelease\res
+com.example.feature.user-release-9 J:\Android\Android Project\My Application\feature\user\src\release\res
+gradleHome-0 C:\Users\74091\.gradle

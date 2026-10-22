@@ -1,0 +1,13 @@
+unstable class com.example.feature.user.FakeUserRepository {
+  runtime val _users: MutableStateFlow<List<User>>
+  stable var shouldReturnError: Boolean
+  stable var errorMsg: String
+  <runtime stability> = Unstable
+}
+unstable class com.example.feature.user.UserViewModelTest {
+  runtime var repository: FakeUserRepository
+  runtime var viewModel: UserViewModel
+  unstable val testDispatcher: TestDispatcher
+  stable val testUser: User
+  <runtime stability> = Unstable
+}

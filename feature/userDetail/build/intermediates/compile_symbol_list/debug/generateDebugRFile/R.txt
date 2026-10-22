@@ -1,0 +1,6 @@
+int string user_detail_avatar_desc 0x0
+int string user_detail_id 0x0
+int string user_detail_load_failed 0x0
+int string user_detail_load_failed_default 0x0
+int string user_detail_name 0x0
+int string user_detail_retry 0x0

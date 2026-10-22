@@ -1,0 +1,24 @@
+stable class com.example.feature.userDetail.UserDetailUiState {
+  stable val isLoading: Boolean
+  stable val user: User?
+  runtime val errorMessage: UiText?
+}
+stable class com.example.feature.userDetail.UserDetailIntent.LoadUser {
+  <runtime stability> = Stable
+}
+stable class com.example.feature.userDetail.UserDetailIntent.Retry {
+  <runtime stability> = Stable
+}
+runtime class com.example.feature.userDetail.UserDetailEffect.ShowToast {
+  runtime val message: UiText
+  <runtime stability> = Uncertain(UiText)
+}
+unstable class com.example.feature.userDetail.UserDetailViewModel {
+  stable val userId: String
+  runtime val repository: UserRepository
+  runtime val _uiState: MutableStateFlow<UserDetailUiState>
+  runtime val uiState: StateFlow<UserDetailUiState>
+  runtime val _effect: Channel<UserDetailEffect>
+  runtime val effect: Flow<UserDetailEffect>
+  <runtime stability> = Unstable
+}

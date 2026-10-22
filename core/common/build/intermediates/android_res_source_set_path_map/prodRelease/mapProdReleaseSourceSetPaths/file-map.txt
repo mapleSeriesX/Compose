@@ -1,0 +1,11 @@
+com.example.core.common-prod-0 J:\Android\Android Project\My Application\core\common\build\generated\res\pngs\prod\release
+com.example.core.common-updated_navigation_xml-1 J:\Android\Android Project\My Application\core\common\build\generated\updated_navigation_xml\prodRelease
+com.example.core.common-mergeProdReleaseResources-2 J:\Android\Android Project\My Application\core\common\build\intermediates\incremental\prodRelease\mergeProdReleaseResources\merged.dir
+com.example.core.common-mergeProdReleaseResources-3 J:\Android\Android Project\My Application\core\common\build\intermediates\incremental\prodRelease\mergeProdReleaseResources\stripped.dir
+com.example.core.common-prodRelease-4 J:\Android\Android Project\My Application\core\common\build\intermediates\merged_res\prodRelease\mergeProdReleaseResources
+com.example.core.common-prodRelease-5 J:\Android\Android Project\My Application\core\common\build\intermediates\packaged_res\prodRelease\packageProdReleaseResources
+com.example.core.common-main-6 J:\Android\Android Project\My Application\core\common\src\main\res
+com.example.core.common-prod-7 J:\Android\Android Project\My Application\core\common\src\prod\res
+com.example.core.common-prodRelease-8 J:\Android\Android Project\My Application\core\common\src\prodRelease\res
+com.example.core.common-release-9 J:\Android\Android Project\My Application\core\common\src\release\res
+gradleHome-0 C:\Users\74091\.gradle

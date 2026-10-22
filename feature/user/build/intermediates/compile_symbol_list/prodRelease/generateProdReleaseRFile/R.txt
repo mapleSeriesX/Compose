@@ -1,0 +1,4 @@
+int string user_load_failed 0x0
+int string user_network_error_cache 0x0
+int string user_network_error_toast 0x0
+int string user_retry 0x0

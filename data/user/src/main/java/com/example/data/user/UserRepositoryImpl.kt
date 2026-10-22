@@ -1,57 +1,69 @@
 package com.example.data.user
 
-import android.util.Log.e
-import androidx.datastore.core.DataStore
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
+import com.example.core.database.AppDatabase
 import com.example.core.database.UserDao
 import com.example.core.model.User
 import com.example.core.network.ApiService
-import com.example.data.user.proto.UserPreferences
+import com.example.core.network.NetworkResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
-import javax.inject.Singleton
 import kotlin.coroutines.cancellation.CancellationException
 
-@Singleton
-class UserRepository @Inject constructor(
+class UserRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val userDao: UserDao,
-    private val dataStore: DataStore<UserPreferences>
-) {
+    private val database: AppDatabase
+) : UserRepository {
 
-    val isDarkMode: Flow<Boolean> = dataStore.data.map { it.isDarkMode }
-
-    suspend fun setDarkMode(enabled: Boolean) {
-        dataStore.updateData { prefs ->
-            prefs.toBuilder().setIsDarkMode(enabled).build()
-        }
-    }
-
-    fun observeUsers(): Flow<List<User>> =
+    override fun observeUsers(): Flow<List<User>> =
         userDao.observeUsers().map { entities ->
             entities.map { it.toDomain() }
         }
 
-    suspend fun refreshUsers(): Result<Unit> = try {
-        val remote = apiService.getUsers()
-        userDao.insertAll(remote.map { it.toEntity() })
-        Result.success(Unit)
-    } catch (e: CancellationException) {
-        throw e
-    } catch (e: Exception) {
-        Result.failure(e)
+    @OptIn(ExperimentalPagingApi::class)
+    override fun observeUsersPaged(): Flow<PagingData<User>> =
+        Pager(
+            config = PagingConfig(pageSize = 20, enablePlaceholders = false),
+            remoteMediator = UserRemoteMediator(apiService, userDao, database),
+            pagingSourceFactory = { userDao.pagingSource() }
+        ).flow.map { pagingData ->
+            pagingData.map { it.toDomain() }
+        }
+
+    override suspend fun refreshUsers(): Result<Unit> = when (val result = apiService.getUsers()) {
+        is NetworkResult.Success -> {
+            userDao.insertAll(result.data.map { it.toEntity() })
+            Result.success(Unit)
+        }
+        is NetworkResult.Error -> {
+            Result.failure(Exception("HTTP ${result.code}: ${result.message}"))
+        }
+        is NetworkResult.Exception -> {
+            if (result.throwable is CancellationException) throw result.throwable
+            Result.failure(result.throwable)
+        }
     }
 
-    fun observeUser(id: String): Flow<User?> =
+    override fun observeUser(id: String): Flow<User?> =
         userDao.observeUser(id).map { entity -> entity?.toDomain() }
 
-    suspend fun refreshUser(id: String): Result<Unit> = try {
-        val remote = apiService.getUser(id)
-        userDao.insertUser(remote.toEntity())
-        Result.success(Unit)
-    } catch (e: CancellationException) {
-        throw e
-    } catch (e: Exception) {
-        Result.failure(e)
+    override suspend fun refreshUser(id: String): Result<Unit> = when (val result = apiService.getUser(id)) {
+        is NetworkResult.Success -> {
+            userDao.insertUser(result.data.toEntity())
+            Result.success(Unit)
+        }
+        is NetworkResult.Error -> {
+            Result.failure(Exception("HTTP ${result.code}: ${result.message}"))
+        }
+        is NetworkResult.Exception -> {
+            if (result.throwable is CancellationException) throw result.throwable
+            Result.failure(result.throwable)
+        }
     }
 }

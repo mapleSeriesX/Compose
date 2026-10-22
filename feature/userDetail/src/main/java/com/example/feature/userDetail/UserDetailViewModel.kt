@@ -2,6 +2,7 @@ package com.example.feature.userDetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.core.common.util.UiText
 import com.example.data.user.UserRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -30,8 +31,6 @@ class UserDetailViewModel @AssistedInject constructor(
 
     init {
         viewModelScope.launch {
-            repository.setDarkMode(true)
-
             var firstEmission = true
             repository.observeUser(userId).collect { user ->
                 _uiState.update { it.copy(user = user) }
@@ -54,17 +53,21 @@ class UserDetailViewModel @AssistedInject constructor(
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, errorMessage = null) }
 
-            runCatching { repository.refreshUser(userId) }
+            repository.refreshUser(userId)
                 .onSuccess {
                     _uiState.update { it.copy(isLoading = false) }
                 }
                 .onFailure { e ->
                     val hasCache = _uiState.value.user != null
+                    val errorUiText = e.message?.let {
+                        UiText.StringResource(R.string.user_detail_load_failed, listOf(it))
+                    } ?: UiText.StringResource(R.string.user_detail_load_failed_default)
+
                     _uiState.update {
-                        it.copy(isLoading = false, errorMessage = if (hasCache) null else e.message)
+                        it.copy(isLoading = false, errorMessage = if (hasCache) null else errorUiText)
                     }
                     if (!hasCache) {
-                        _effect.send(UserDetailEffect.ShowToast("加载失败：${e.message}"))
+                        _effect.send(UserDetailEffect.ShowToast(errorUiText))
                     }
                 }
         }
