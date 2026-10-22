@@ -1,22 +1,12 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+# 忽略所有模块下的 build 目录
 **/build/
-/app/release/
-build/
+# 忽略 IDE 配置
+.idea/
+*.iml
+# 忽略 Gradle 缓存
 .gradle/
+local.properties
+# 忽略系统文件
+.DS_Store
+
 app/release/
-*.apk
-*.aab
